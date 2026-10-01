@@ -1,3 +1,7 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
     background-color: #FF5300;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -16,8 +20,9 @@ header {
 
 .logo {
     width: 40px;
-    height: 40px;
+    height: auto;
     flex-shrink: 0;
+    object-fit: contain;
 }
 
 .CTA {
@@ -38,11 +43,12 @@ header {
 }
 
 .stationContents {
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 96px 16px 32px;
 }
 
 .announcement {
@@ -65,12 +71,12 @@ header {
     background-color: #121212;
     border-radius: 4px;
     color: white;
-    font-size: 24px;
+    font-size: clamp(20px, 5vw, 24px);
     font-weight: 500;
+    width: 100%;
     padding: 16px;
     margin: 24px 0 8px;
     display: flex;
-    width: 400px;
     min-height: 80px;
     box-sizing: border-box;
     overflow-wrap: break-word;
@@ -95,6 +101,7 @@ header {
     flex-wrap: wrap;
     gap: 6px;
     margin-top: 12px;
+    width: 100%; 
 }
 
 .route {
@@ -135,6 +142,9 @@ header {
     border-radius: 4px;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    max-width: 448px;   /* 400px content + 24px padding each side */
+    margin: 8px 0;
 }
 
 #doorsCanvas {
@@ -147,7 +157,7 @@ header {
 }
 
 #structureImg {
-    width: 400px;
+    width: 100%;
     height: auto;
     margin-top: 16px;
     border-radius: 4px;
@@ -182,4 +192,35 @@ header {
 .adaIcon {
     width: 20px;
     height: 20px;
+}
+
+@media (max-width: 480px) {
+    header {
+        position: static;       /* stops overlapping the card */
+        padding: 16px;
+    }
+
+    .logo {
+        width: 48px;
+        height: auto;
+    }
+
+    .announcement {
+        font-size: 14px;
+    }
+
+    .stationContents {
+        padding-top: 8px;       /* the header no longer needs clearing */
+        min-height: auto;
+    }
+
+    #stationName {
+        font-size: 20px;
+    }
+
+    .CTA {
+        width: 100%;
+        max-width: 448px;
+        padding: 16px;          /* bigger tap target */
+    }
 }
